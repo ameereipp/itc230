@@ -46,16 +46,15 @@ app.get('/details', (req,res, next) => {
 });
 
 // DELETE - handle GET (get renders query)
-/*app.get('/delete', (req,res) => {
+app.get('/delete', (req,res) => {
   console.log(req.query.gameName + ' deleted');
   let result = game.delete(req.query.gameName); //delete game object
   res.render('delete', {gameName: req.query.gameName, result: result});
 
-});*/
+})
 
 // SEARCH - handle POST (post renders body)
 app.post('/details', (req, res, next) => {
-  console.log(req.body);
   Game.findOne({gameName: req.body.gameName}, (err, game) => {
     if(err) return next(err);
     res.render('details', {result: game});
