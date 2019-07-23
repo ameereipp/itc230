@@ -1,1 +1,30 @@
-info about my project
+{
+  "name": "itc230",
+  "version": "1.0.0",
+  "description": "itc230 app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo\"Error no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "handlebars": "^4.1.2",
+    "lib": "^4.0.2",
+    "mongoose": "^5.6.4"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ameereipp/itc230.git"
+  },
+  "author": "Ameer Wad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ameereipp/itc230/issues"
+  }
+}

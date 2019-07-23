@@ -1,18 +1,75 @@
-const http = require("http"); 
-http.createServer((req,res) => {
-  const path = req.url.toLowerCase();
-  switch(path) {
-    case '/':
-      res.writeHead(200, {'Content-Type': 'text/plain'});
-      res.end('Home page');
-      break;
-    case '/about':
-      res.writeHead(200, {'Content-Type': 'text/plain'});
-      res.end('About page');
-      break;
-    default:
-      res.writeHead(404, {'Content-Type': 'text/plain'});
-      res.end('Not found');
-      break;
+'use strict'
+
+const Game = require('./models/game.js');
+
+const express = require("express");
+const bodyParser = require("body-parser")
+const app = express();
+
+app.set('port', process.env.PORT || 3000);
+app.use(express.static(__dirname + '/views')); // set location for static files
+app.use(bodyParser.urlencoded({extended: true})); // parse form submissions
+
+const handlebars =  require("express-handlebars");
+app.engine(".html", handlebars({extname: '.html', defaultLayout: false}));
+app.set("view engine", ".html");
+
+app.get('/', (req,res) => {
+  Game.find({}, (err, games) => {
+    if(err) {
+      console.log(err);
+    }else{
+      res.render('home', {games: games });
     }
-}).listen(process.env.PORT || 3000);
+  });
+});
+
+// send content of 'home' view
+/*app.get('/', (req,res) => {
+  res.render('home', {game: game.getAll()});
+});*/
+
+// About - send plain text response
+app.get('/about', (req,res) => {
+  res.type('text/plain');
+  res.send('About Page');
+
+});
+
+// ADD
+app.get('/details', (req,res, next) => {
+  Game.findOne({gameName: req.query.gameName}, (err, game)=>{
+    if(err) return next(err);
+    res.render('details', {result: game});
+  });
+});
+
+// DELETE - handle GET (get renders query)
+/*app.get('/delete', (req,res) => {
+  console.log(req.query.gameName + ' deleted');
+  let result = game.delete(req.query.gameName); //delete game object
+  res.render('delete', {gameName: req.query.gameName, result: result});
+
+});*/
+
+// SEARCH - handle POST (post renders body)
+app.post('/details', (req, res, next) => {
+  console.log(req.body);
+  Game.findOne({gameName: req.body.gameName}, (err, game) => {
+    if(err) return next(err);
+    res.render('details', {result: game});
+  });
+});
+
+// define 404 handler
+app.use((req,res) => {
+  res.type('text/plain');
+  res.status(404);
+  res.send('404--Not Found');
+
+});
+
+app.listen(app.get('port'),() => {
+  console.log('Express started at ' + __dirname);
+
+});

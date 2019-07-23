@@ -1,0 +1,13 @@
+<html>
+    <body>
+        <a href="/">Home</a>
+    {{#if result.deleted}}
+    <h2>{{gameName}} deleted</h2>
+    remaining total: {{result.total}}
+
+    {{else}}
+    <h2>{{gameName}} Not Found</h2>
+
+    {{/if}}
+    </body>
+</html>

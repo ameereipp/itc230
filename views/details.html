@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <a href="/">Home</a>
+    {{#if result}}
+
+        <h1>You Searched for : {{gameName}}</h1>
+        <li>Name: {{result.gameName}}</li>
+        <li>Game Type: {{result.type}}</li>
+        <li>Level: {{result.level}}</li>
+            <p>
+                <a href="\details?gameName={{result.gameName}}"></a>
+            </p>
+
+
+    {{else}}
+    <h2>{{gameName}} Not Found.</h2>
+    {{/if}}
+    </body>
+
+</html>
