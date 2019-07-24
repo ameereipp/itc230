@@ -1,17 +1,23 @@
 <html>
-<body>
-<h2>Home</h2>
+    <body>
+       <h2>Home</h2>
+
 <form action="/details" method="POST">
     <input type="text" name="gameName" placeholder="Search Games.." required maxlength="100">
     <button>Search</button>
 </form>
-<form action="/details" method="POST">
-    <input type="text" name="gameName" placeholder="Add Games.."required maxlength="100">
+
+<form action="/add" method="POST">
+    <input type="text" name="gameName" placeholder="Add Game Name.."required maxlength="100">
+    <input type="text" name="type" placeholder="Add Type.."required maxlength="100">
+    <input type="text" name="level" placeholder="Add Level.."required maxlength="100">
     <button>Add</button>
 </form>
-<h3>Games</h3>
+
+        <h3>Games</h3>
 {{#each games}}
 <li><a href="/details?gameName={{gameName}}">{{gameName}}</a></li>
 {{/each}}
-</body>
+
+    </body>
 </html>

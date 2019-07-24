@@ -25,10 +25,6 @@ app.get('/', (req,res) => {
   });
 });
 
-// send content of 'home' view
-/*app.get('/', (req,res) => {
-  res.render('home', {game: game.getAll()});
-});*/
 
 // About - send plain text response
 app.get('/about', (req,res) => {
@@ -38,20 +34,23 @@ app.get('/about', (req,res) => {
 });
 
 // ADD
-app.get('/details', (req,res, next) => {
-  Game.findOne({gameName: req.query.gameName}, (err, game)=>{
+app.post('/add', (req,res, next) => {
+  const newGame = {gameName: req.body.gameName, type: req.body.type, level: req.body.level};
+  Game.updateOne({gameName: req.body.gameName}, newGame, {upsert: true}, (err, result)=>{
     if(err) return next(err);
-    res.render('details', {result: game});
+    res.render('details', {result: newGame, action: 'added'});
   });
 });
 
 // DELETE - handle GET (get renders query)
 app.get('/delete', (req,res) => {
-  console.log(req.query.gameName + ' deleted');
-  let result = game.delete(req.query.gameName); //delete game object
-  res.render('delete', {gameName: req.query.gameName, result: result});
-
-})
+  Game.deleteOne({ gameName: req.query.gameName }, (err, deleted) => {
+    if (err) return next(err);
+    Game.countDocuments((err, total) => {
+      res.render('delete', {gameName: req.query.gameName, total: total, deleted: deleted } );
+    });
+  });
+});
 
 // SEARCH - handle POST (post renders body)
 app.post('/details', (req, res, next) => {
