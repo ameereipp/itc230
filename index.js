@@ -21,9 +21,13 @@ app.get('/', (req,res) => {
   Game.find({}, (err, games) => {
     if(err) {
       console.log(err);
-    }else{
-      res.render('home', {games: games });
     }
+      //}
+      //else{
+      // res.render('home', {games: games });
+      console.log(games);
+      res.render('home_dem', {games: JSON.stringify(games)});
+
   });
 });
 

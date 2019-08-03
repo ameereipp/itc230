@@ -1,0 +1,75 @@
+<html>
+<head>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <title>React Demo</title>
+
+</head>
+<body>
+
+<div id="root"></div>
+
+<!-- NOTE: text/babel type required to support JSX -->
+<script type="text/babel">
+    const List = (props) => {
+        let items_list = props.items.map((item) => {
+            return <li onClick={props.clickHandler} key={item._id} id={item._id}>{item.gameName}</li>
+        });
+        return (
+            <div>
+                Game List
+                <ul>
+                    {items_list}
+                </ul>
+            </div>
+        );
+    }
+
+    const Detail = (props) => {
+        return (
+            <div>
+                gameName: {props.item.gameName}<br/>
+                type: {props.item.type}<br/>
+                level: {props.item.level}<br/>
+            </div>
+                )
+    }
+
+
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                items: {{{games}}},
+            curItem: {}
+        };
+        this.showDetail = this.showDetail.bind(this);
+        }
+    showDetail(event) {
+        console.log(event.target)
+        let editItem = this.state.items.find((item)=>{
+            return item._id == event.target.id;
+        });
+        this.setState({curItem: editItem});
+    }
+
+
+    render(){
+        return(
+            <div>
+                <List items={this.state.items} clickHandler={this.showDetail}/>
+                <Detail item={this.state.curItem}/>
+            </div>
+        );
+        }
+    }
+
+    ReactDOM.render(<App/>, document.getElementById('root'));
+
+    </script>
+
+    </body>
+</html>
