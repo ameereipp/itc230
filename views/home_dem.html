@@ -14,6 +14,24 @@
 
 <!-- NOTE: text/babel type required to support JSX -->
 <script type="text/babel">
+
+    const Game = ({game}) => {
+        return (
+            <div><h2>{game}</h2></div>
+        );
+    }
+    const SearchForm = (props) => {
+        return (
+            <div>
+                <input
+                    type="text" placeholder="Search games..."
+                    value={props.filter}
+                    changeHandler={props.change}
+                /><p/>
+            </div>
+        );
+    }
+
     const List = (props) => {
         let items_list = props.items.map((item) => {
             return <li onClick={props.clickHandler} key={item._id} id={item._id}>{item.gameName}</li>
@@ -27,49 +45,115 @@
             </div>
         );
     }
-
     const Detail = (props) => {
         return (
             <div>
-                gameName: {props.item.gameName}<br/>
-                type: {props.item.type}<br/>
-                level: {props.item.level}<br/>
+                <form>
+                gameName: <input onChange={props.change} name="gameName" value={props.item.gameName || ""}/><br/>
+                type: <input onChange={props.change} name="type" value={props.item.type || ""}/><br/>
+                level: <input onChange={props.change} name="level" value={props.item.level || ""}/><br/>
+                </form>
+                <button onClick={props.save}>Save</button>  <button onClick={props.reset}>Reset</button> <button onClick={props.delete}>Delete</button>
+
             </div>
-                )
+        )
     }
-
-
     class App extends React.Component {
         constructor(props) {
             super(props);
             this.state = {
                 items: {{{games}}},
+
             curItem: {}
         };
-        this.showDetail = this.showDetail.bind(this);
+            this.onSearch = this.onSearch.bind(this);
+            this.showDetail = this.showDetail.bind(this);
+            this.changeHandler = this.changeHandler.bind(this);
+            this.onClear = this.onClear.bind(this);
+            this.onSave = this.onSave.bind(this);
+            this.onDelete = this.onDelete.bind(this);
         }
-    showDetail(event) {
-        console.log(event.target)
-        let editItem = this.state.items.find((item)=>{
-            return item._id == event.target.id;
-        });
-        this.setState({curItem: editItem});
-    }
+        // handle changes to search form
+        onSearch(event) {
+            // set search term. react will handle component updates
+            this.setState({filter: event.target.value.toLowerCase() });
+        }
+
+        showDetail(event) {
+            console.log(event.target)
+            let editItem = this.state.items.find((item)=>{
+                return item._id == event.target.id;
+            });
+            this.setState({curItem: editItem});
+        }
+
+        changeHandler(event){
+            var newItem = this.state.curItem;
+            newItem[event.target.name] = event.target.value
+            this.setState({curItem: newItem});
+        }
+
+        //clear details form
+        onClear(){
+            console.log('clear')
+            this.setState({curItem: {}});
+        }
+
+        onSave(){
+            console.log('save')
+
+            let newItem = this.state.curItem;
+            fetch("/api/add/", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newItem)
+            }).then(res => res.json())
+                .then((json) => {
+                    console.log(json)
+                    let newData = this.state.items;
+                    if (!newItem._id) { // add new item to array
+
+                        newItem._id = json._id;
+                        newData.push(newItem);
+                    } else { // update existing item
+                        newData = this.state.items.map((item) => {
+                            if (item._id === newItem._id) {
+                                item = newItem;
+                            }
+                            return item;
+                        });
+                    }
+                    // Update state with new array
+                    this.setState({items: newData});
+                });
+        }
+        onDelete() {
+            let id = this.state.curItem._id;
+
+            fetch("/api/delete/" + id).then((response) => {
+                return response.json();
+            }).then((results) => {
+                // Filter all items except the one to be removed
+                const remainder = this.state.items.filter((item) => {
+                    return item._id !== id;
+                });
+                // Update state with new array & clear current item
+                this.setState({items: remainder, curItem: {}});
+            });
+        }
 
 
-    render(){
-        return(
-            <div>
-                <List items={this.state.items} clickHandler={this.showDetail}/>
-                <Detail item={this.state.curItem}/>
-            </div>
-        );
+        render(){
+            return(
+                <div>
+                    <List items={this.state.items} clickHandler={this.showDetail}/>
+                    <Detail change={this.changeHandler} reset={this.onClear}save={this.onSave} delete={this.onDelete} item={this.state.curItem}/>
+                </div>
+            );
         }
     }
-
     ReactDOM.render(<App/>, document.getElementById('root'));
+</script>
 
-    </script>
-
-    </body>
+</body>
 </html>

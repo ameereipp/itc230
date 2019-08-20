@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb6b7bb0-75e1-4f04-b27b-a8169477023a" name="Default Changelist" comment="Merge branch 'master' of https://github.com/ameereipp/itc230&#10;&#10;# Conflicts:&#10;#&#9;index.js&#10;#&#9;package.json">
-      <change afterPath="$PROJECT_DIR$/home_dem.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/game.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/game.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home_dem.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/home_dem.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,29 +19,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+            <state relative-caret-position="240">
+              <caret line="135" selection-start-line="135" selection-start-column="3" selection-end-line="140" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/home_dem.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/credentials.js">
+        <entry file="file://$PROJECT_DIR$/views/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home_dem.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-306">
-              <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+            <state relative-caret-position="153">
+              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -57,9 +59,7 @@
         <option value="$PROJECT_DIR$/models/games.js" />
         <option value="$PROJECT_DIR$/.eslintrc.json" />
         <option value="$PROJECT_DIR$/test/games.js" />
-        <option value="$PROJECT_DIR$/test/game.js" />
         <option value="$PROJECT_DIR$/.eslintrc.js" />
-        <option value="$PROJECT_DIR$/lib/game.js" />
         <option value="$PROJECT_DIR$/models/test_db.js" />
         <option value="$PROJECT_DIR$/models/game.js" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -68,7 +68,10 @@
         <option value="$PROJECT_DIR$/views/home.html" />
         <option value="$PROJECT_DIR$/models/credentials.js" />
         <option value="$PROJECT_DIR$/home_dem.html" />
+        <option value="$PROJECT_DIR$/test/game.js" />
+        <option value="$PROJECT_DIR$/lib/game.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/views/home_dem.html" />
       </list>
     </option>
   </component>
@@ -76,8 +79,9 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="759" />
-    <option name="width" value="1112" />
+    <option name="x" value="798" />
+    <option name="y" value="12" />
+    <option name="width" value="1150" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
@@ -164,11 +168,16 @@
       <workItem from="1564096878423" duration="6373000" />
       <workItem from="1564103338934" duration="484000" />
       <workItem from="1564700728803" duration="5199000" />
+      <workItem from="1564866942714" duration="151000" />
+      <workItem from="1565132913530" duration="8543000" />
+      <workItem from="1565141730145" duration="646000" />
+      <workItem from="1565624685744" duration="8000" />
+      <workItem from="1566289527798" duration="1313000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33866000" />
+    <option name="totallyTimeSpent" value="44527000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -180,10 +189,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="759" y="0" width="1112" height="1047" extended-state="0" />
+    <frame x="798" y="12" width="1150" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14711359" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14208633" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -196,8 +205,8 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32932165" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32932165" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50050867" side_tool="true" weight="0.1619256" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49949136" visible="true" weight="0.2428884" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50166667" side_tool="true" weight="0.21663019" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49833333" visible="true" weight="0.14551422" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32932165" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -252,13 +261,6 @@
     <entry file="file://$PROJECT_DIR$/module.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/test_db.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -297,24 +299,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
@@ -332,6 +320,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/home_dem.html" />
+    <entry file="file://$PROJECT_DIR$/test/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="79" selection-start-line="9" selection-start-column="79" selection-end-line="9" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/credentials.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -339,17 +342,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home_dem.html">
+    <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+        <state relative-caret-position="240">
+          <caret line="135" selection-start-line="135" selection-start-column="3" selection-end-line="140" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
+    <entry file="file://$PROJECT_DIR$/views/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+        <state relative-caret-position="153">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/home_dem.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
         </state>
       </provider>
     </entry>

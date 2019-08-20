@@ -54,15 +54,36 @@ app.get('/about', (req,res) => {
 //   });
 // });
 //add - api
-app.post('/api/add/:gameName', (req,res, next) => {
-  if (!req.body.gameName) { //insert new doc
-    let game = new Game({gameName: req.body.gameName, type: req.body.type, level: req.body.level});
-    game.save((err, newGame) => {
+// app.post('/api/add/:gameName', (req,res, next) => {
+//   if (!req.body.gameName) { //insert new doc
+//     let game = new Game({gameName: req.body.gameName, type: req.body.type, level: req.body.level});
+//     game.save((err, newGame) => {
+//       if (err) return next(err);
+//       console.log(newGame)
+//       res.json({updated: 0, gameName: newGame.gameName});
+//     });
+//   } else { //update existing game
+//     Game.updateOne({gameName: req.body.gameName}, {
+//       gameName: req.body.gameName,
+//       type: req.body.type,
+//       level: req.body.level
+//     }, (err, result) => {
+//       if (err) return next(err);
+//       res.json({updated: result.nModified, gameName: req.body.gameName});
+//     });
+//   }
+// });
+
+app.post('/api/add/', (req,res, next) => {
+  // find & update existing item, or add new
+  if (!req.body._id) { // insert new document
+    let game = new Game({gameName:req.body.gameName, type:req.body.type, level:req.body.level});
+    game.save((err,newGame) => {
       if (err) return next(err);
-      console.log(newGame)
-      res.json({updated: 0, gameName: newGame.gameName});
+      console.log(newGame);
+      res.json({updated: 0, _id: newGame._id});
     });
-  } else { //update existing game
+  } else { // update existing document
     Game.updateOne({gameName: req.body.gameName}, {
       gameName: req.body.gameName,
       type: req.body.type,
@@ -70,59 +91,54 @@ app.post('/api/add/:gameName', (req,res, next) => {
     }, (err, result) => {
       if (err) return next(err);
       res.json({updated: result.nModified, gameName: req.body.gameName});
+      console.log(result);
     });
   }
 });
 
-app.get('/api/add/:gameName/:type/:level', (req,res, next) => {
-  // find & update existing item, or add new
-  let gameName = req.params.gameName;
-  Game.update({ gameName: gameName}, {gameName:gameName, type: req.params.type, level: req.params.level },
-      {upsert: true }, (err, result) => {
+// app.get('/api/add/:gameName/:type/:level', (req,res, next) => {
+//   // find & update existing item, or add new
+//   let gameName = req.params.gameName;
+//   Game.update({ gameName: gameName}, {gameName:gameName, type: req.params.type, level: req.params.level },
+//       {upsert: true }, (err, result) => {
+//     if (err) return next(err);
+//     // nModified = 0 for new item, = 1+ for updated item
+//     res.json({updated: result.nModified});
+//   });
+// });
+
+
+//DELETE - API
+app.get('/api/delete/:id', (req,res, next) => {
+  Game.deleteOne({ "_id": req.params.id }, (err, deleted) => {
     if (err) return next(err);
-    // nModified = 0 for new item, = 1+ for updated item
-    res.json({updated: result.nModified});
+    res.json({"deleted": deleted});
+    console.log(deleted);
   });
 });
 
-// DELETE - handle GET (get renders query)
-// app.get('/delete', (req,res) => {
-//   Game.deleteOne({ gameName: req.query.gameName }, (err, deleted) => {
-//     if (err) return next(err);
-//     Game.countDocuments((err, total) => {
-//       res.render('delete', {gameName: req.query.gameName, total: total, deleted: deleted } );
-//     });
-//   });
-// });
-//DELETE - API
-app.get('/api/delete/:gameName', (req,res, next) => {
-  Game.deleteOne({gameName:req.params.gameName }, (err, deleted) => {
-    if (err) return next(err);
-    res.json(deleted);
-  });
-});
 // SEARCH - handle POST (post renders body)
 app.post('/details', (req, res, next) => {
   Game.findOne({gameName: req.body.gameName}, (err, game) => {
     if(err) return next(err);
-    res.render('details', {result: game});
+    res.json(game);
   });
 });
 // SEARCH - API
 app.get('/api/details/:gameName', (req, res, next) => {
-  Game.findOne({gameName: req.params.gameName}, (err, game) => {
-    if(err) return next(err);
-    res.json(game);
+  Game.findOne({ "_id": req.query.id }, (err, game) => {
+    if (err) return next(err);
+    res.render('details', {result: game} );
   });
 });
 
 //
-app.get('/details', (req, res, next) => {
-  Game.findOne({gameName: req.query.gameName}, (err, game) => {
-    if(err) return next(err);
-    res.render('details', {result: game});
-  });
-});
+// app.get('/details', (req, res, next) => {
+//   Game.findOne({gameName: req.query.gameName}, (err, game) => {
+//     if(err) return next(err);
+//     res.render('details', {result: game});
+//   });
+// });
 
 
 
